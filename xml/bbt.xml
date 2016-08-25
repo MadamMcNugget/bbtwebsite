@@ -1,0 +1,81 @@
+<menu>
+	<catagory>
+		<name>Drinks</name> 
+		<sub_catagory sub_id="1" >
+			<name>Specialty Real Milk Tea</name>
+			<option default="true">Iced</option>
+			<option>Hot</option>
+			<descirption>Made with real milk and cream. No powder.</descirption>
+			<item item_id="11">
+				<name>Kuromitsu Roasted Oolong Milk Tea</name>
+				<price>5.20</price>
+			</item>
+			<item item_id="12">
+				<name>Triple Black Milk Tea (HK black tea + black sugar + grass jelly)</name>
+				<price>4.99</price>
+			</item>
+			<item item_id="13">
+				<name>London Fog Milk Tea (premium Cream Earl Grey tea)</name>
+				<price>4.99</price>
+			</item>
+			<item item_id="14">
+				<name>Royale Milk Tea (black sugar)</name>
+				<price>4.75</price>
+			</item>
+		</sub_catagory>
+		<sub_catagory sub_id="2">
+			<name>Green Tea and Black Tea</name>
+			<option default="true">Iced</option>
+			<option>Hot</option>
+			<option>Slush</option>
+			<descirption>In all of your favorate flavors</descirption>
+			<item item_id="21">
+				<name>Honey Lemon Green/Black Tea (real lemon)</name>
+				<price>4.50</price>
+			</item>
+			<item item_id="22">
+				<name>Honey Green/Black Tea</name>
+				<price>4.25</price>
+			</item>
+			<item>
+				<name>Blueberry Green/Black Tea</name>
+				<price>4.25</price>
+			</item>
+			<item item_id="23">
+				<name>Grapefruit Green/Black Tea</name>
+				<price>4.25</price>
+			</item>
+		</sub_catagory>
+	</catagory>
+	<catagory>
+		<name>Food</name>
+		<sub_catagory sub_id="3">
+			<name>Desserts</name>
+			<descirption>All natural Made-in-House</descirption>
+			<item item_id="31">
+				<name>Ice Cream Pint Jar (500ml)</name>
+				<price>9.00</price>
+				<descirption>Flavours available: Check our blackboard or call us to find out!</descirption>
+			</item>
+			<item item_id="32">
+				<name>Mango Pomelo Sago</name>
+				<price>6.99</price>
+				<descirption>A popular Asian dessert soup with Ataulfo mangos, creamy coconut balanced with juicy pomelo. Made with 100% fresh ingredients.</descirption>
+			</item>
+			<item item_id="33">
+				<name>Shaved Mango Supreme</name>
+				<price>8.55</price>
+				<descirption>Super finely shaved mango juice (not pure ice!) topped with fresh and juicy mango cubes, mango sauce and vanilla ice cream, smothered with real condensed milk (not condensed creamer!). Additional add-ons are extra.</descirption>
+			</item>
+		</sub_catagory>
+		<sub_catagory sub_id="4">
+			<name>Meals</name>
+			<descirption>Highly rated. Crowd favourates.</descirption>
+			<item item_id="41">
+				<name>Spicy Wontons</name>
+				<price>6.99</price>
+				<descirption>Lightly spicy wontons.</descirption>
+			</item>
+		</sub_catagory>
+	</catagory>
+</menu>

@@ -1,0 +1,17 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px}
+tr:nth-child(even) {
+    background-color: #dddddd}
+.badge-notify{
+       background:red;
+       position:relative;
+       top: -20px;
+       left: -35px;
+    }
+
