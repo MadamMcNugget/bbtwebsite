@@ -5,8 +5,11 @@
   if(!isset($_SESSION['cart']))
     $_SESSION['cart']= array();
     $count=0;
-// determine which page to render
+  $active = 1;
+ //determine which page to render
 if(isset($_POST["order"])){
+  $temp = explode(",", $_POST['order']);
+  $active = $temp[3];
   $_SESSION['cart'][] = $_POST["order"];
   $count= count($_SESSION['cart']);
   $page = 'menu';
@@ -19,19 +22,13 @@ elseif (isset($_POST['name']) && isset($_POST['phone_number'])) {
 elseif (isset($_GET['page']))
   $page = $_GET['page'];
 else
-  $page = 'index';
+  $page = 'menu';
 
 // show page
 switch ($page) {
-  case 'index':
-    render('templates/header', array('title' => 'CSCI S-75','truth' => 'Hazel is hungry','cart'=>"$count"));
-    render('index');
-    render('templates/footer');
-    break;
-
   case 'menu':
     render('templates/header', array('title' => 'MENU', 'cart'=>"$count"));
-    print_r($_SESSION['cart']);
+    // print_r($_SESSION['cart']);
     require('../views/menu.php');
     render('templates/footer');
     break;
@@ -46,15 +43,6 @@ switch ($page) {
     render('templates/header', array('title' => 'MENU', 'cart'=>"$count"));
     render('templates/confirmation', array('name' => "$name", 'phone' => "$phone"));
     render('templates/footer');
-
-  case 'lecture':
-    if (isset($_GET['n']))
-    {
-    render('templates/header', array('title' => 'Lecture '.$_GET['n']));
-    render('lecture', array('n' => $_GET['n']));
-    render('templates/footer');
-    } 
-    
     break;
   
   default:

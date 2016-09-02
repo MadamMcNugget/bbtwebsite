@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <br>
 	<ul>
 	<?php			        
 
@@ -11,7 +12,7 @@
     		$total = $total + $ordered_item[2];
 
     	}
-    	echo '<li><h4>You total is $'."$total</h4></li>";
+    	echo '<li><h4>Your total is $'."$total</h4></li>";
     ?>
     	<br>
 	</ul>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Blossom Teas Website demo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -16,7 +16,8 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="?page=index">Logo</a>
+	      <a class="navbar-brand" href="#"><img style="max-height:50px;" src="images/logo.png"></a>
+	      
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	    	<style type="text/css">
@@ -29,13 +30,13 @@
 			    }
  		   </style>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="?page=index"><h4>HOME</h4></a></li>
+	        <li><a href="#"><h4>HOME</h4></a></li>
 	        <li><a href="?page=menu"><h4>MENU</h4></a></li>
 	        <li><a href="#contact"><h4>CONTACT</h4></a></li>
 	        <li><div class="dropdown">
 	         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
 		        <span class="glyphicon glyphicon-shopping-cart" style="font-size:35px"></span>
-		        <span class="badge badge-notify"><?php  echo "$cart"?></span></button>
+		        <span class="badge badge-notify"><?php echo "$cart"?></span></button>
 			<ul class="dropdown-menu" style= "width:500px;">
 	        	<?php if ($cart != 0){			        
 
@@ -49,7 +50,7 @@
 
 		        	}
 		        	echo "<li class=\"divider\"></li>";
-		        	echo "<li><h4>You total is ".'$'."$total</h4></li>";
+		        	echo "<li><h4>Your total is ".'$'."$total</h4></li>";
 					echo "<a href=\"?page=check_out\"class=\"btn btn-primary dropdown-toggle\" type=\"button\" style=\"position:relative;left:300px;\", >Proceed to checkout</a>";
 	        	}
 	        	else{
