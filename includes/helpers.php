@@ -14,3 +14,4 @@ function render($views, $data = array())
         require($path);
     }
 }
+?>

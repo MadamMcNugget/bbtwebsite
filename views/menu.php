@@ -1,22 +1,22 @@
 <div class="container-fluid">
 	<div class="row">
 		<ul class="nav nav-pills nav-stacked  tabbable tabs-left col-sm-3">	
-			<?php foreach ($dom->catagory as $catagory) {
-				$catagory_name = $catagory->name;
-				print "<h3>$catagory_name</h3>";
-				foreach ($catagory->sub_catagory as $sub_catagory) {
-					$sub_catagory_name = $sub_catagory->name;
-					$n = $sub_catagory['sub_id'];
+			<?php foreach ($dom->category as $category) {
+				$category_name = $category->name;
+				print "<h3>$category_name</h3>";
+				foreach ($category->sub_category as $sub_category) {
+					$sub_category_name = $sub_category->name;
+					$n = $sub_category['sub_id'];
 					if ($n == $active){
-					echo "<li class=\"active\"><a href=\"#$n\" data-toggle=\"tab\">$sub_catagory_name</a></li>";
+					echo "<li class=\"active\"><a href=\"#$n\" data-toggle=\"tab\">$sub_category_name</a></li>";
 					}
 					else
-					echo "<li><a href=\"#$n\" data-toggle=\"tab\">$sub_catagory_name</a></li>";
+					echo "<li><a href=\"#$n\" data-toggle=\"tab\">$sub_category_name</a></li>";
 					unset($n);
 				}
-				unset($sub_catagory);
+				unset($sub_category);
 			}
-			unset($catagory);
+			unset($category);
 			?>
 		</ul>
 		<div class="col-sm-9 tab-content">
@@ -33,35 +33,54 @@
 				    background-color: #dddddd}
 			</style>
 
-		<?php foreach ($dom->catagory as $catagory) {
-			foreach ($catagory->sub_catagory as $sub_catagory) {
-				$sub_catagory_name = $sub_catagory->name;
-				$n = $sub_catagory['sub_id'];
+		<?php foreach ($dom->category as $category) {
+			foreach ($category->sub_category as $sub_category) {
+				$sub_category_name = $sub_category->name;
+				$n = $sub_category['sub_id'];
 				if ($n == $active)
-				echo "<div class=\"tab-pane fade in active\" id=\"$n\"><h3>$sub_catagory_name</h3>";
+				echo "<div class=\"tab-pane fade in active\" id=\"$n\"><h3>$sub_category_name</h3>";
 				else
-				echo "<div class=\"tab-pane fade\" id=\"$n\"><h3>$sub_catagory_name</h3>";
+				echo "<div class=\"tab-pane fade\" id=\"$n\"><h3>$sub_category_name</h3>";
 				echo "<table>";				
-					foreach ($sub_catagory->item as $item) {
+					foreach ($sub_category->item as $item) {
 						$item_name = $item->name;
 						$item_price = $item->price;
 						$item_id = $item['item_id'];
 						echo "<tr><td><h4>$item_name</h3>".'$'."$item_price<br>";
 						// Here is the way to handle nodes that might or might not exist.
-						if (!empty($item->descirption)){
-							$descirption=$item->descirption;
-							echo "$descirption</td>";
+						if (!empty($item->description)){
+							$description=$item->description;
+							echo "$description</td>";
 						}
-						if (!empty($sub_catagory->option)){
+						if (!empty($sub_category->option_category)){
 							echo "<td><div class=\"dropdown\">";
 							echo "<button class=\"btn btn-info dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Add to Cart</button>";
 							echo "<ul class=\"dropdown-menu\">";
-							foreach ($sub_catagory->option as $sub_catagory_option) {
+
+							/*
+							foreach ($sub_category->option as $sub_category_option) {
 								echo "<form action=\"index.php\" method=post>";
-								echo "<li><button class=\"btn btn-info\" name=\"order\" value=\"$item_name,$sub_catagory_option,$item_price,$n\" type=\"submit\">$sub_catagory_option</button></li>";
+								echo "<li><button class=\"btn btn-info\" name=\"order\" value=\"$item_name,$sub_category_option,$item_price,$n\" type=\"submit\">$sub_category_option</button></li>";
 								echo "</form>";
 							}
-							echo "</ul></div></td>";
+							*/
+
+
+							echo "<form action=\"index.php\" method=post>";
+							foreach ($sub_category->option_category as $sub_category_option_category)
+							{
+								foreach ($sub_category_option_category->option as $sub_category_option)
+								{
+									echo "<li><input type=\"checkbox\" name=\"order\" value=\"$item_name,$sub_category_option,$item_price\">$sub_category_option</input></li>";						
+								}
+								echo "<li class=\"divider\"></li>";
+
+							}
+							echo "<li><button class=\"btn btn-info\" name=\"order\" value=\"$item_name,$sub_category_option,$item_price,$n\" type=\"submit\">Add to you cart</button></li>";
+								
+
+
+							echo "</form></ul></div></td>";
 
 						}
 						else{
@@ -76,9 +95,9 @@
 				unset($n);
 				unset($item);
 			}
-			unset($sub_catagory);
+			unset($sub_category);
 		}
-		unset($catagory);
+		unset($category);
 		?>
 	</div>
 </div>

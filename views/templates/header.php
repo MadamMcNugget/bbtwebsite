@@ -8,6 +8,19 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script>
+	function add_to_cart(item_name,subcategory_option,item_price) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("cart_count").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("POST", "add_to_cart.php", true);
+        xmlhttp.send("item_name="+item_name+"&subcategory_option="+subcategory_option+"&item_price="+item_price);
+
+	}
+	</script>
   <link rel="stylesheet" type="text/css" href="../views/templates/menu.css">
 </head>
 	<title><?php echo htmlspecialchars($title) ?></title>

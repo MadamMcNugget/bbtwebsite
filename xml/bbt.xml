@@ -1,14 +1,21 @@
 <menu>
-	<catagory>
+	<category>
 		<name>Drinks</name> 
-		<sub_catagory sub_id="1" >
+		<sub_category sub_id="1" >
 			<name>Specialty Real Milk Tea</name>
-			<option default="true">Iced</option>
-			<option>Hot</option>
-			<descirption>Made with real milk and cream. No powder.</descirption>
+			<option_category name="tempurature"> 
+				<option default="true">Iced</option>
+				<option>Hot</option>
+			</option_category>
+			<option_category name="addons">
+				<option default="true">Pearls</option>
+				<option>Jelly</option>
+			</option_category>
+			<description>Made with real milk and cream. No powder.</description>
 			<item item_id="11">
 				<name>Kuromitsu Roasted Oolong Milk Tea</name>
 				<price>5.20</price>
+				<description>Kuromitsu is amazing</description>
 			</item>
 			<item item_id="12">
 				<name>Triple Black Milk Tea (HK black tea + black sugar + grass jelly)</name>
@@ -22,13 +29,23 @@
 				<name>Royale Milk Tea (black sugar)</name>
 				<price>4.75</price>
 			</item>
-		</sub_catagory>
-		<sub_catagory sub_id="2">
+		</sub_category>
+		<sub_category sub_id="2">
 			<name>Green Tea and Black Tea</name>
-			<option default="true">Iced</option>
-			<option>Hot</option>
-			<option>Slush</option>
-			<descirption>In all of your favorate flavors</descirption>
+			<option_category name="tempurature">
+				<option default="true">Iced</option>
+				<option>Hot</option>
+				<option>Slush</option>
+			</option_category>
+			<option_category name="greenblack">
+				<option default="true">Green Tea</option>
+				<option>Black Tea</option>
+			</option_category>
+			<option_category name="addons">
+				<option default="true">Pearls</option>
+				<option>Red Beans</option>
+			</option_category>
+			<description>In all of your favourite flavours</description>
 			<item item_id="21">
 				<name>Honey Lemon Green/Black Tea (real lemon)</name>
 				<price>4.50</price>
@@ -45,37 +62,37 @@
 				<name>Grapefruit Green/Black Tea</name>
 				<price>4.25</price>
 			</item>
-		</sub_catagory>
-	</catagory>
-	<catagory>
+		</sub_category>
+	</category>
+	<category>
 		<name>Food</name>
-		<sub_catagory sub_id="3">
+		<sub_category sub_id="3">
 			<name>Desserts</name>
-			<descirption>All natural Made-in-House</descirption>
+			<description>All natural Made-in-House</description>
 			<item item_id="31">
 				<name>Ice Cream Pint Jar (500ml)</name>
 				<price>9.00</price>
-				<descirption>Flavours available: Check our blackboard or call us to find out!</descirption>
+				<description>Flavours available: Check our blackboard or call us to find out!</description>
 			</item>
 			<item item_id="32">
 				<name>Mango Pomelo Sago</name>
 				<price>6.99</price>
-				<descirption>A popular Asian dessert soup with Ataulfo mangos, creamy coconut balanced with juicy pomelo. Made with 100% fresh ingredients.</descirption>
+				<description>A popular Asian dessert soup with Ataulfo mangos, creamy coconut balanced with juicy pomelo. Made with 100% fresh ingredients.</description>
 			</item>
 			<item item_id="33">
 				<name>Shaved Mango Supreme</name>
 				<price>8.55</price>
-				<descirption>Super finely shaved mango juice (not pure ice!) topped with fresh and juicy mango cubes, mango sauce and vanilla ice cream, smothered with real condensed milk (not condensed creamer!). Additional add-ons are extra.</descirption>
+				<description>Super finely shaved mango juice (not pure ice!) topped with fresh and juicy mango cubes, mango sauce and vanilla ice cream, smothered with real condensed milk (not condensed creamer!). Additional add-ons are extra.</description>
 			</item>
-		</sub_catagory>
-		<sub_catagory sub_id="4">
+		</sub_category>
+		<sub_category sub_id="4">
 			<name>Meals</name>
-			<descirption>Highly rated. Crowd favourates.</descirption>
+			<description>Highly rated. Crowd favourites.</description>
 			<item item_id="41">
 				<name>Spicy Wontons</name>
 				<price>6.99</price>
-				<descirption>Lightly spicy wontons.</descirption>
+				<description>Lightly spicy wontons.</description>
 			</item>
-		</sub_catagory>
-	</catagory>
+		</sub_category>
+	</category>
 </menu>
