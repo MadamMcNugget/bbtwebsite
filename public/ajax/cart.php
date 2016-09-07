@@ -5,7 +5,7 @@
     {
         public $item_name;
         public $item_price;
-//        public $options;
+        public $item_options;
     }
 
     // set MIME type
@@ -13,7 +13,7 @@
     $ordered_item = new order();
     $ordered_item->item_name=$_GET['item_name'];
     $ordered_item->item_price=$_GET['item_price'];
-//    $ordered_item->options=$_GET['options'];
+    $ordered_item->item_options=$_GET['item_options'];
     if(!isset($_SESSION['shopping_cart'])){
         $_SESSION['shopping_cart']= array();
     }
@@ -22,5 +22,6 @@
 
     // output JSON
     $response = json_encode($_SESSION['shopping_cart']);
+    //$response = $_SESSION['shopping_cart'];   
     print $response;
 ?>

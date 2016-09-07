@@ -46,6 +46,7 @@
 						$item_name = $item->name;
 						$item_price = $item->price;
 						$item_id = $item['item_id'];
+						$item_options = "nooptions";
 						echo "<tr><td><h4>$item_name</h4>".'$'."$item_price<br>";
 						// Here is the way to handle nodes that might or might not exist.
 						if (!empty($item->description)){
@@ -56,27 +57,21 @@
 							echo "<form onsubmit=\"add_to_cart($item_id); return false;\">";
 							echo "<td><div class=\"dropdown\">";
 							echo "<button class=\"btn btn-info dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Add to Cart</button>";
-							echo "<ul id =\"$item_id\" item_name=\"$item_name\" item_price =\"$item_price\" class=\"dropdown-menu\">";
+							echo "<ul id =\"$item_id\" item_name=\"$item_name\" item_price =\"$item_price\" item_options=\"hasoptions\" class=\"dropdown-menu\">";
 
-							/*
-							foreach ($sub_category->option as $sub_category_option) {
-								echo "<form action=\"index.php\" method=post>";
-								echo "<li><button class=\"btn btn-info\" name=\"order\" value=\"$item_name,$sub_category_option,$item_price,$n\" type=\"submit\">$sub_category_option</button></li>";
-								echo "</form>";
-							}
-							*/
-
-
+							// drop-down options menu
 							foreach ($sub_category->option_category as $sub_category_option_category)
 							{
 								$input_type = $sub_category_option_category['input_type'];
 								foreach ($sub_category_option_category->option as $sub_category_option)
 								{
-									echo "<li><input type=\"$input_type\" name=\"$sub_category_option\">$sub_category_option</input></li>";						
+									echo "<li><input type=\"$input_type\" name=\"$sub_category_option_category\" value=\"$sub_category_option\">$sub_category_option</input></li>";						
 								}
 								echo "<li class=\"divider\"></li>";
 
 							}
+
+							// drop-down options submit button
 							echo "<li><button class=\"btn btn-info\" type=\"submit\">Add to your cart</button></li>";
 
 							echo "</form>";
@@ -84,7 +79,7 @@
 						}
 						else{
 							echo "<form onsubmit=\"add_to_cart($item_id); return false;\">";
-							echo "<td><button id =\"$item_id\" item_name=\"$item_name\" item_price =\"$item_price\"class=\"btn btn-info\" type=\"submit\">Add to Cart</button></td>";
+							echo "<td><button id =\"$item_id\" item_name=\"$item_name\" item_price =\"$item_price\"item_options=\"nooptions\" class=\"btn btn-info\" type=\"submit\">Add to Cart</button></td>";
 							echo "</form>";
 						}
 						echo "</tr>";

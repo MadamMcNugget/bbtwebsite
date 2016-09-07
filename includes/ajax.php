@@ -35,6 +35,27 @@
         var item_price = item.getAttribute("item_price");
 
     	// get the options
+        var item_options = item.getAttribute("item_options");
+        if (item_options == "nooptions")
+        {
+            item_options = "no options";
+        }
+        else
+        {
+            //item_options = "options exist but this browser is too lazy to print them.";
+            
+            item_options = "";
+            if (item.children[0].checked){
+                if (item_options == ""){
+                    item_options = item.children[0].value;
+                }
+                else
+                {
+                    item_options = item_options + "," + item.children[0].value;
+                }
+            }
+        }
+        
  /*   	var options = "";
 
     	if (item.children[i].checked){
@@ -44,12 +65,12 @@
     		else
     		{
     			options = options + "," + item.children[i].innerHTML;
-    			}
-    		}
+			}
+		}
 */
 
         // construct URL
-        var url = "ajax/cart.php?item_name=" + item_name + "&item_price=" + item_price;// + "&options=" + options;
+        var url = "ajax/cart.php?item_name=" + item_name + "&item_price=" + item_price + "&item_options=" + item_options;
 
         // get quote
         xhr.onreadystatechange =
@@ -63,12 +84,13 @@
                     // evaluate the cart in JSON
                     var cart = eval("("+ xhr.responseText + ")");
 
-                    // insert cart items into DOM?
+                    // insert cart items into cart
                     var text = "";
                     
                     for ( i=0 ; i<cart.length ; i++)
                     {
                         text += "<li>" + cart[i].item_name + ": " + cart[i].item_price + "</li>";
+                        text += "<ul><li>" + cart[i].item_options + "</li></ul>";
                     }
 
 
