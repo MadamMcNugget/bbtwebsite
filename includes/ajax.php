@@ -45,14 +45,18 @@
             //item_options = "options exist but this browser is too lazy to print them.";
             
             item_options = "";
-            if (item.children[0].checked){
-                if (item_options == ""){
-                    item_options = item.children[0].value;
+            for ( i=0 ; i<item.children.length ; i++) 
+            {
+                if (item.children[i].checked){
+                    if (item_options == ""){
+                        item_options = item.children[i].getAttribute("value");
+                    }
+                    else
+                    {
+                        item_options = item_options + "," + item.children[i].getAttribute("value");
+                    }
                 }
-                else
-                {
-                    item_options = item_options + "," + item.children[0].value;
-                }
+            
             }
         }
         
