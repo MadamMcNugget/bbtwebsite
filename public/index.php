@@ -28,6 +28,8 @@ else
 switch ($page) {
   case 'menu':
     render('templates/header', array('title' => 'MENU', 'cart'=>"$count"));
+    require('../includes/ajax.php');
+    render('templates/navbar', array('title' => 'MENU', 'cart'=>"$count"));
     // print_r($_SESSION['cart']);
     require('../views/menu.php');
     render('templates/footer');
@@ -35,20 +37,17 @@ switch ($page) {
 
   case 'check_out':
     render('templates/header', array('title' => 'MENU', 'cart'=>"$count"));
+    render('includes/ajax');
+    render('templates/navbar', array('title' => 'MENU', 'cart'=>"$count"));
     render('templates/check_out');
     render('templates/footer');
     break;
 
   case 'confirmation':
     render('templates/header', array('title' => 'MENU', 'cart'=>"$count"));
+    render('includes/ajax');
+    render('templates/navbar', array('title' => 'MENU', 'cart'=>"$count"));
     render('templates/confirmation', array('name' => "$name", 'phone' => "$phone"));
-    render('templates/footer');
-    break;
-  
-  default:
-    render('templates/header', array('title' => 'CSCI S-75'));
-    echo "<b> The lecuture you are looking for does not exist </b><br>";
-    render('index');
     render('templates/footer');
     break;
 }

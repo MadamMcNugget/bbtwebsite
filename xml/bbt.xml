@@ -3,11 +3,11 @@
 		<name>Drinks</name> 
 		<sub_category sub_id="1" >
 			<name>Specialty Real Milk Tea</name>
-			<option_category name="tempurature"> 
+			<option_category name="tempurature" input_type="radio"> 
 				<option default="true">Iced</option>
 				<option>Hot</option>
 			</option_category>
-			<option_category name="addons">
+			<option_category name="addons" input_type="checkbox">
 				<option default="true">Pearls</option>
 				<option>Jelly</option>
 			</option_category>
@@ -32,16 +32,16 @@
 		</sub_category>
 		<sub_category sub_id="2">
 			<name>Green Tea and Black Tea</name>
-			<option_category name="tempurature">
+			<option_category name="tempurature" input_type="radio">
 				<option default="true">Iced</option>
 				<option>Hot</option>
 				<option>Slush</option>
 			</option_category>
-			<option_category name="greenblack">
+			<option_category name="greenblack" input_type="radio">
 				<option default="true">Green Tea</option>
 				<option>Black Tea</option>
 			</option_category>
-			<option_category name="addons">
+			<option_category name="addons" input_type="checkbox">
 				<option default="true">Pearls</option>
 				<option>Red Beans</option>
 			</option_category>
