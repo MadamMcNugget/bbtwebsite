@@ -1,7 +1,12 @@
-<body onload="retrieveCart()">
+<body onload="autoUpdateInit()">
 
 <script>
-    function retrieveCart()
+    function autoUpdateInit(){
+        var timeStamp = 0;
+
+        setInterval(requestOrderUpdate(timeStamp), 5000);
+    }
+    function requestOrderUpdate(timeStamp)
     {
         try
         {
@@ -19,8 +24,9 @@
             return;
         }
 
+
         // construct URL
-        var url = "ajax/cart.php?task=get";
+        var url = "ajax/cart.php?task=update&timeStamp=" + timeStamp;
 
         // get quote
         xhr.onreadystatechange =
@@ -31,12 +37,17 @@
             {
                 if (xhr.status == 200)
                 {
-                    // evaluate the cart in JSON
-                    var cart = eval("("+ xhr.responseText + ")");
+                    /*
+                    // evaluate the submitted_order_list in JSON
+                    var submitted_order_list = eval("("+ xhr.responseText + ")");
 
-                    // insert cart items into cart
+                    // parse the submitted_order_list
                     var text = "";
-                    var total_price = 0;
+                    var total_price = 0;                    
+                    for (i = 0; i < submitted_order_list.length; i++) {
+                        
+                    };
+
                     
                     for ( i=0 ; i<cart.length ; i++)
                     {
@@ -48,7 +59,11 @@
                     text += '<li><h3>Your total is: $' + total_price.toFixed(2) + '</h3></li>'; 
 
                     document.getElementById("cart_items").innerHTML = text;
+                    */
+                    document.getElementById("response").innerHTML = xhr.responseText;
                 }
+                else if (xhr.status == 304){}
+
                 else
                     alert("Error with Ajax call!");
             }
@@ -59,21 +74,6 @@
 </script>
 
 <div class="container-fluid">
-    <br>
-	<ul id="cart_items">
-
-	</ul>
-    <form onsubmit="submit_order(); return false;">
-		<table>
-    		<tr>
-            	<td>Name: </td><td><input type="text" id="name"></td>
-            </tr>
-            <tr>
-        		<td>Phone Number: </td><td><input type="text" id="phone_number"></td>
-			</tr>
-		</table><br>
-        <span class="bg-success text-success" id="confirmation"></span><br>
-        <!-- This button does not go anywhere yet -->
-		<input type="submit" class="btn btn-info" style="position:relative;left:300px;" value="Confirm and Send Order">
-	</form>
+    <span id="response"></span>
+    <button onclick="requestOrderUpdate(0)">please work...</button>
 </div>

@@ -37,7 +37,7 @@ switch ($page) {
 
   case 'check_out':
     render('templates/header', array('title' => 'MENU', 'cart'=>"$count"));
-    render('includes/ajax');
+    require('../includes/ajax.php');
     render('templates/navbar', array('title' => 'MENU', 'cart'=>"$count"));
     render('templates/check_out');
     render('templates/footer');
@@ -48,6 +48,13 @@ switch ($page) {
     render('includes/ajax');
     render('templates/navbar', array('title' => 'MENU', 'cart'=>"$count"));
     render('templates/confirmation', array('name' => "$name", 'phone' => "$phone"));
+    render('templates/footer');
+    break;
+
+  case 'store':
+    render('templates/header', array('title' => 'List of Orders'));
+    require('../includes/ajax.php');
+    render('store/store_side');
     render('templates/footer');
     break;
 }
