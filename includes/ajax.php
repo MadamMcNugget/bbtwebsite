@@ -42,21 +42,20 @@
         }
         else
         {
-            //item_options = "options exist but this browser is too lazy to print them.";
-            
             item_options = "";
             for ( i=0 ; i<item.children.length ; i++) 
             {
-                if (item.children[i].checked){
-                    if (item_options == ""){
-                        item_options = item.children[i].getAttribute("value");
-                    }
-                    else
-                    {
-                        item_options = item_options + "," + item.children[i].getAttribute("value");
+                if (item.children[i].children[0] != null){
+                    if (item.children[i].children[0].checked){
+                        if (item_options == ""){
+                            item_options = item.children[i].children[0].getAttribute("value");
+                        }
+                        else
+                        {
+                            item_options += ", " + item.children[i].children[0].getAttribute("value");
+                        }
                     }
                 }
-            
             }
         }
         
@@ -93,7 +92,7 @@
                     
                     for ( i=0 ; i<cart.length ; i++)
                     {
-                        text += "<li>" + cart[i].item_name + ": " + cart[i].item_price + "</li>";
+                        text += "<li>" + cart[i].item_name + ": $" + cart[i].item_price + "</li>";
                         text += "<ul><li>" + cart[i].item_options + "</li></ul>";
                     }
 

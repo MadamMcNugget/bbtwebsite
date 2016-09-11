@@ -65,7 +65,8 @@
 								$input_type = $sub_category_option_category['input_type'];
 								foreach ($sub_category_option_category->option as $sub_category_option)
 								{
-									echo "<li><input type=\"$input_type\" name=\"$sub_category_option_category\" value=\"$sub_category_option\">$sub_category_option</input></li>";						
+									$sub_category_option_name = $sub_category_option_category['name'];
+									echo "<li><input type=\"$input_type\" name=\"$sub_category_option_name\" value=\"$sub_category_option\">$sub_category_option</input></li>";						
 								}
 								echo "<li class=\"divider\"></li>";
 
@@ -74,8 +75,8 @@
 							// drop-down options submit button
 							echo "<li><button class=\"btn btn-info\" type=\"submit\">Add to your cart</button></li>";
 
-							echo "</form>";
 							echo "</ul></div></td>";
+							echo "</form>";
 						}
 						else{
 							echo "<form onsubmit=\"add_to_cart($item_id); return false;\">";
