@@ -56,6 +56,33 @@
         xhr.open("GET", url, true);
         xhr.send(null);
     }
+
+    function validate_form()
+    {
+        var order_name = document.forms["order_form"]["name"].value;
+        var order_phone = document.forms["order_form"]["phone_number"].value;
+        var isValid = true;
+
+        if (order_name == null || order_name == "") {
+            document.getElementById("name_input").innerHTML = "Name must be filled out.";
+            isValid = false;
+        } else 
+            document.getElementById("name_input").innerHTML = "";
+        
+        if (order_phone == null || order_phone == "") {
+            document.getElementById("phone_input").innerHTML = "Phone number must be filled out.";
+            isValid = false;
+        } else if (order_phone.length < 7) {
+            document.getElementById("phone_input").innerHTML = "Phone number must be valid.";
+            isValid = false;
+        } else 
+            document.getElementById("phone_input").innerHTML = "";
+
+        if (isValid)
+            submit_order();
+        else
+            return isValid;
+    }
 </script>
 
 <div class="container-fluid">
@@ -63,17 +90,19 @@
 	<ul id="cart_items">
 
 	</ul>
-    <form onsubmit="submit_order(); return false;">
+    <form name="order_form" onsubmit="validate_form(); return false;">
 		<table>
     		<tr>
             	<td>Name: </td><td><input type="text" id="name"></td>
+                <td><span id="name_input" class="bg-danger text-danger"></span></td>
             </tr>
             <tr>
         		<td>Phone Number: </td><td><input type="text" id="phone_number"></td>
+                <td><span id="phone_input" class="bg-danger text-danger"></span></td>
 			</tr>
 		</table><br>
         <span class="bg-success text-success" id="confirmation"></span><br>
         <!-- This button does not go anywhere yet -->
-		<input type="submit" class="btn btn-info" style="position:relative;left:300px;" value="Confirm and Send Order">
+		<input id="order_form_buttom" type="submit" class="btn btn-info" style="position:relative;left:300px;" value="Confirm and Send Order">
 	</form>
 </div>

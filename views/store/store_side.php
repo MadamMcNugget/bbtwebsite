@@ -2,11 +2,10 @@
 
 <script>
     function autoUpdateInit(){
-        var timeStamp = 0;
 
-        setInterval(requestOrderUpdate(timeStamp), 5000);
+        setInterval(function() {requestOrderUpdate()}, 5000);
     }
-    function requestOrderUpdate(timeStamp)
+    function requestOrderUpdate()
     {
         try
         {
@@ -25,7 +24,9 @@
         }
 
 
+
         // construct URL
+        var timeStamp = document.getElementById("submitted_order").getAttribute("timeStamp");
         var url = "ajax/cart.php?task=update&timeStamp=" + timeStamp;
 
         // get quote
@@ -37,30 +38,46 @@
             {
                 if (xhr.status == 200)
                 {
-                    /*
                     // evaluate the submitted_order_list in JSON
-                    var submitted_order_list = eval("("+ xhr.responseText + ")");
+                    var submitted_order_list = JSON.parse(xhr.responseText);
+                    var submitted_orders = submitted_order_list.submitted_orders;
 
-                    // parse the submitted_order_list
-                    var text = "";
-                    var total_price = 0;                    
-                    for (i = 0; i < submitted_order_list.length; i++) {
-                        
-                    };
+                    for (i = 0; i<submitted_orders.length; i++ ){
+                        var timeStamp = submitted_orders[i].time_stamp;
+                        var customer_name = submitted_orders[i].name;
+                        var customer_number = submitted_orders[i].phone_number;
 
-                    
-                    for ( i=0 ; i<cart.length ; i++)
-                    {
-                        text += "<li>" + cart[i].item_name + ": $" + cart[i].item_price;
-                        text += "<ul><li>" + cart[i].item_options + "</li></ul>";
-                        total_price += Number(cart[i].item_price);
+                        var table = document.createElement("table");
+                        var row = table.insertRow(0);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);                       
+                        cell1.innerHTML = "<b>" + customer_name +"</b>";
+                        cell2.innerHTML = "<b>" + customer_number +"</b>";
+                        document.getElementById("submitted_order").setAttribute("timeStamp", timeStamp)
+                        // parse the submitted_order_list
+
+                        var total_price = 0; 
+                        var ordered_items = submitted_orders[i].ordered_items;                
+                        for (var j = 0; j < ordered_items.length; j++) {
+                            var item_name=ordered_items[j].item_name;
+                            var item_price=ordered_items[j].item_price;
+                            var item_options=ordered_items[j].item_options;
+                            var row = table.insertRow(j+1);
+                            var cell1 = row.insertCell(0);
+                            var cell2 = row.insertCell(1);
+                            var cell3 = row.insertCell(2);
+                            cell1.innerHTML = item_name;
+                            cell2.innerHTML = item_options;
+                            cell3.innerHTML = "$" + item_price;
+                            total_price += Number(item_price);
+                        }
+                        var footer = table.createTFoot();
+                        var row = footer.insertRow(0);
+                        var cell = row.insertCell(0);
+                        cell.innerHTML = "<b>The total is $" + total_price.toFixed(2) + "</b>";
+                        document.getElementById("submitted_order").appendChild(table);
                     }
-                    text += '<br><br>';
-                    text += '<li><h3>Your total is: $' + total_price.toFixed(2) + '</h3></li>'; 
-
-                    document.getElementById("cart_items").innerHTML = text;
-                    */
-                    document.getElementById("response").innerHTML = xhr.responseText;
+;
                 }
                 else if (xhr.status == 304){}
 
@@ -73,7 +90,7 @@
     }
 </script>
 
-<div class="container-fluid">
-    <span id="response"></span>
-    <button onclick="requestOrderUpdate(0)">please work...</button>
+<div class="container-fluid" >
+    <div id="submitted_order" timeStamp="0"></div>
+    <button onclick="requestOrderUpdate()">please work...</button>
 </div>

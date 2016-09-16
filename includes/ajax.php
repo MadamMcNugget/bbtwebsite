@@ -204,6 +204,7 @@
                 if (xhr.status == 200)
                 {
                     document.getElementById("confirmation").innerHTML = xhr.responseText;
+                    document.getElementById("order_form_buttom").style.display = 'none';
                 }
                 else
                     alert("Error with Ajax call!");

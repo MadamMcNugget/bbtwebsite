@@ -14,7 +14,11 @@
         public $ordered_items = array();
         public $time_stamp;
     }
-    $submitted_order_list = array();
+    class Submitted_Order_List
+    {
+        public $submitted_orders = array();
+    }
+    $submitted_order_list = new Submitted_Order_List();
 
 switch ($_GET['task']) {
     // adding items to the shopping cart
@@ -60,7 +64,6 @@ switch ($_GET['task']) {
         // set MIME type
         header("Content-type: application/json");
 
-
         if (!isset($submitted_order))
             $submitted_order = new Submitted_Order();
 
@@ -69,45 +72,67 @@ switch ($_GET['task']) {
         $submitted_order->ordered_items = $_SESSION['shopping_cart'];
         $submitted_order->time_stamp = time();
 
-        $submitted_order_list[] = $submitted_order;
-        // output JSON
+        // load from file
+        if (!file_exists("submitted_order_list.txt"))
+            file_put_contents("submitted_order_list.txt", "");
 
-        print(json_encode($submitted_order_list));
+        $file_contents = file_get_contents("submitted_order_list.txt");
+
+        if ($file_contents == "")
+            $submitted_order_list = new Submitted_Order_List();
+        else
+            $submitted_order_list = json_decode($file_contents);
+
+        $submitted_order_list->submitted_orders[] = $submitted_order;
+        file_put_contents("submitted_order_list.txt", json_encode($submitted_order_list));
+
+        echo "Your order has been received. Thank you.";
         break;
+        
 
 
     // store page checking to see if there are new orders
     case 'update':
-/*
-        if (empty($submitted_order_list)){
+    // load and decode 
+        if (!file_exists("submitted_order_list.txt")){
             Header("HTTP/1.1 304 Not Modified");
-            
+            break;
+        }
+
+        $file_contents = file_get_contents("submitted_order_list.txt");
+        if ($file_contents == ""){
+            Header("HTTP/1.1 304 Not Modified");
+            break;
+        }
+        else
+            $submitted_order_list = json_decode($file_contents);
+
+        if (empty($submitted_order_list->submitted_orders)){
+           Header("HTTP/1.1 304 Not Modified");
         }
         else{
-            $last_order_sent = $_GET['time_stamp'];
+            $last_order_sent = $_GET['timeStamp'];
             $outdated_order = NULL;
-
-
-            for ( $i =0, $size = count($submitted_order_list); $i<$size; ++$i) {
-                if ($submitted_order_list[$i]->time_stamp <= $last_order_sent){
+            for ( $i =0, $size = count($submitted_order_list->submitted_orders); $i<$size; ++$i) {
+                if ($submitted_order_list->submitted_orders[$i]->time_stamp <= $last_order_sent){
                     $outdated_order= $i;
                 }
                 else{
                     break;
                 }
             }
-            if ($outdated_order!= NULL)
-            array_splice($submitted_order_list, 0, $outdated_order+1);
-
-            if (empty($submitted_order_list)){
-                Header("HTTP/1.1 304 Not Modified");
+            if (is_numeric($outdated_order)){
+                array_splice($submitted_order_list->submitted_orders, 0, $outdated_order+1);
             }
-            else{
-*/      
-        print("yeung does not know what he is doing.");
-        print(json_encode($submitted_order_list));
-            //}
- //       }
+            if (empty($submitted_order_list->submitted_orders)){
+            }
+//                Header("HTTP/1.1 304 Not Modified");
+            
+            $response = json_encode($submitted_order_list);
+            file_put_contents("submitted_order_list.txt", $response);
+            print($response);
+
+        }
         break;
 }
 
